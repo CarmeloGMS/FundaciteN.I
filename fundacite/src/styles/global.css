@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom small utilities */
+:root{
+  --brand: #0b74da;
+}
+
+/* Example utility for preserving accessible focus outlines */
+.focus-ring:focus{outline:none;box-shadow:0 0 0 3px rgba(11,116,218,0.18);border-radius:.375rem}

@@ -1,0 +1,40 @@
+---
+--- 
+<form id="contactForm" class="grid gap-3 max-w-xl">
+  <input name="name" placeholder="Nombre" required class="p-3 border rounded-md focus:ring-2 focus:ring-sky-300" />
+  <input type="email" name="email" placeholder="Correo electrónico" required class="p-3 border rounded-md focus:ring-2 focus:ring-sky-300" />
+  <input name="subject" placeholder="Asunto" class="p-3 border rounded-md focus:ring-2 focus:ring-sky-300" />
+  <textarea name="message" placeholder="Mensaje" rows="5" required class="p-3 border rounded-md focus:ring-2 focus:ring-sky-300"></textarea>
+  <div class="flex items-center gap-3">
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Enviar</button>
+    <div id="contactStatus" class="text-slate-700 text-sm"></div>
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('contactStatus');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = 'Enviando...';
+    const data = Object.fromEntries(new FormData(form));
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.ok) {
+        status.textContent = 'Mensaje enviado. Gracias.';
+        form.reset();
+      } else {
+        const text = await res.text();
+        status.textContent = 'Error: ' + (text || res.statusText);
+      }
+    } catch (err) {
+      status.textContent = 'Error de red.';
+      console.error(err);
+    }
+  });
+</script>
