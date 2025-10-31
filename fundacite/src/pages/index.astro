@@ -12,33 +12,39 @@ import ContactForm from '../components/ContactForm.astro';
 <Layout>
   <MarketingMenu />
 
-  <main id="main" class="max-w-6xl mx-auto py-8 px-4">
+  <main id="main" class="max-w-6xl mx-auto py-12 px-4 space-y-20">
     <Hero />
 
-    <section id="informacion" class="mt-8">
-      <h2 class="text-xl font-bold mb-2">¿Buscamos innovadores?</h2>
-      <p class="text-slate-700">Sí — buscamos personas curiosas y proactivas en áreas de agricultura, biología, electrónica, salud, robótica, investigación y más. Si te apasiona resolver problemas con tecnología y ciencia, este programa es para ti.</p>
+    <section id="informacion" class="py-8 border-b border-gray-200">
+      <h2 class="text-2xl font-bold mb-4 text-center text-indigo-700">¿Buscamos innovadores?</h2>
+      <p class="text-slate-700 text-lg text-center max-w-3xl mx-auto">Sí — buscamos personas curiosas y proactivas en áreas de agricultura, biología, electrónica, salud, robótica, investigación y más. Si te apasiona resolver problemas con tecnología y ciencia, este programa es para ti.</p>
     </section>
 
-    <Benefits />
+    <div class="py-8">
+      <Benefits />
+    </div>
 
-    <section id="galeria" class="mt-8">
-      <h2 class="text-xl font-bold mb-3">Galería</h2>
+    <section id="galeria" class="py-12 bg-gray-50 rounded-xl px-6">
+      <h2 class="text-2xl font-bold mb-8 text-center text-indigo-700">Galería</h2>
       <ImageGallery />
     </section>
 
-    <section id="videos" class="mt-8">
-      <h2 class="text-xl font-bold mb-3">Videos</h2>
+    <section id="videos" class="py-12">
+      <h2 class="text-2xl font-bold mb-8 text-center text-indigo-700">Videos</h2>
       <VideoSection />
     </section>
 
     <!-- Registro ahora se abre en modal desde el menú -->
 
-    <FAQ />
+    <div class="py-8">
+      <FAQ />
+    </div>
 
-    <section id="contacto" class="mt-8">
-      <h2 class="text-xl font-bold mb-3">Contacto</h2>
-      <ContactForm />
+    <section id="contacto" class="py-12 bg-gray-50 rounded-xl px-6">
+      <h2 class="text-2xl font-bold mb-8 text-center text-indigo-700">Contacto</h2>
+      <div class="max-w-3xl mx-auto">
+        <ContactForm />
+      </div>
     </section>
   </main>
 </Layout>
