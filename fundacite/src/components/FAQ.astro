@@ -1,0 +1,19 @@
+---
+const faqs = [
+  { q: '¿Quién puede aplicar?', a: 'Cualquier persona con interés en ciencia y tecnología: agricultores, biólogos, técnicos, científicos, estudiantes y profesionales.' },
+  { q: '¿Es obligatorio tener experiencia?', a: 'No. Valoramos tanto la experiencia como la motivación. Habrá oportunidades para diferentes niveles.' },
+  { q: '¿Cómo se usan los datos del registro?', a: 'Los datos se usan para preseleccionar candidatos y contactarlos; no compartimos información sin permiso.' }
+];
+---
+
+<section id="faq" class="max-w-4xl mx-auto mt-8 p-6 bg-white/80 rounded-md shadow-sm">
+  <h3 class="text-xl font-bold mb-3">Preguntas frecuentes</h3>
+  <div class="space-y-3">
+    {faqs.map(item => (
+      <details class="border rounded-md p-3">
+        <summary class="font-medium cursor-pointer">{item.q}</summary>
+        <div class="mt-2 text-slate-700">{item.a}</div>
+      </details>
+    ))}
+  </div>
+</section>

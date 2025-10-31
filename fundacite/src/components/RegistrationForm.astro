@@ -1,0 +1,87 @@
+---
+---
+<section id="registro" class="max-w-3xl mx-auto p-6 bg-white/80 dark:bg-slate-800/60 rounded-lg shadow-sm">
+  <h2 class="text-2xl font-bold mb-2">Registro de nuevo innovador</h2>
+  <p class="text-sm text-slate-600 mb-4">Si quieres formar parte de proyectos de ciencia y tecnología, completa este formulario. Selecciona tu perfil y cuéntanos tus habilidades.</p>
+
+  <form id="registrationForm" class="grid gap-3">
+    <div class="grid sm:grid-cols-2 gap-3">
+      <input name="firstName" placeholder="Nombre" required class="p-3 border rounded-md focus:ring-2 focus:ring-sky-300" />
+      <input name="lastName" placeholder="Apellido" required class="p-3 border rounded-md focus:ring-2 focus:ring-sky-300" />
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-3">
+      <input name="email" type="email" placeholder="Correo electrónico" required class="p-3 border rounded-md focus:ring-2 focus:ring-sky-300" />
+      <input name="phone" placeholder="Teléfono (opcional)" class="p-3 border rounded-md focus:ring-2 focus:ring-sky-300" />
+    </div>
+
+    <label class="block">
+      <select name="profession" required class="w-full p-3 border rounded-md focus:ring-2 focus:ring-sky-300">
+        <option value="">Selecciona tu perfil</option>
+        <option>Agricultor</option>
+        <option>Biólogo</option>
+        <option>Técnico en electrónica</option>
+        <option>Técnico médico</option>
+        <option>Técnico en robótica</option>
+        <option>Científico</option>
+        <option>Otro</option>
+      </select>
+    </label>
+
+    <label class="block">
+      <textarea name="skills" rows="4" placeholder="Habilidades / experiencia (breve)" class="w-full p-3 border rounded-md focus:ring-2 focus:ring-sky-300"></textarea>
+    </label>
+
+    <label class="block text-sm text-slate-600">Adjuntar CV (opcional)</label>
+    <input name="cv" type="file" accept=".pdf,.doc,.docx" class="text-sm" />
+
+    <div class="flex items-center gap-3">
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">Enviar registro</button>
+      <div id="registerStatus" class="text-sm text-slate-700"></div>
+    </div>
+  </form>
+
+</section>
+
+<script>
+  const maybeForm = document.getElementById('registrationForm');
+  const statusEl = /** @type {HTMLElement | null} */ (document.getElementById('registerStatus'));
+  if (maybeForm instanceof HTMLFormElement && statusEl) {
+    const formEl = maybeForm;
+    formEl.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = 'Enviando registro...';
+
+      const fd = new FormData(formEl);
+
+      // Build a JSON object, file handling is left to backend
+      const payload = {
+        firstName: fd.get('firstName'),
+        lastName: fd.get('lastName'),
+        email: fd.get('email'),
+        phone: fd.get('phone'),
+        profession: fd.get('profession'),
+        skills: fd.get('skills')
+      };
+
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          statusEl.textContent = 'Registro recibido. Nos pondremos en contacto.';
+          formEl.reset();
+        } else {
+          const text = await res.text();
+          statusEl.textContent = 'Error: ' + (text || res.statusText);
+        }
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'Error de red. Intenta de nuevo.';
+      }
+    });
+  }
+</script>

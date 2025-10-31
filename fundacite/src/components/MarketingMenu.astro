@@ -1,13 +1,19 @@
 ---
 --- 
-<nav class="bg-blue-600 text-white py-3">
+<nav class="py-4">
   <div class="max-w-6xl mx-auto px-4 flex items-center justify-between">
-    <a href="/" class="text-white font-bold text-lg no-underline">Fundacite N.I.</a>
-    <div class="flex gap-4">
-      <a href="#informacion" class="text-white hover:underline">Información</a>
-      <a href="#galeria" class="text-white hover:underline">Imágenes</a>
-      <a href="#videos" class="text-white hover:underline">Videos</a>
-      <a href="#contacto" class="text-white hover:underline">Contacto</a>
+    <div class="flex items-center gap-3">
+      <a href="/" class="text-white font-bold text-lg no-underline">Fundacite N.I.</a>
+      <span class="text-white/70 text-sm">Innovación en ciencia y tecnología</span>
+    </div>
+
+    <div class="flex gap-2">
+      <button class="px-3 py-2 rounded-md bg-white/10 text-white hover:bg-white/20" onclick="document.getElementById('main').scrollIntoView({behavior:'smooth'})">Información</button>
+  <button class="px-3 py-2 rounded-md bg-white/10 text-white hover:bg-white/20" onclick="document.getElementById('beneficios').scrollIntoView({behavior:'smooth'})">Beneficios</button>
+      <button class="px-3 py-2 rounded-md bg-white/10 text-white hover:bg-white/20" onclick="document.getElementById('galeria').scrollIntoView({behavior:'smooth'})">Imágenes</button>
+      <button class="px-3 py-2 rounded-md bg-white/10 text-white hover:bg-white/20" onclick="document.getElementById('videos').scrollIntoView({behavior:'smooth'})">Videos</button>
+  <button class="px-3 py-2 rounded-md bg-white/10 text-white hover:bg-white/20" onclick="window.openRegisterModal()">Registro</button>
+      <button class="px-3 py-2 rounded-md bg-white/10 text-white hover:bg-white/20" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Contacto</button>
     </div>
   </div>
 </nav>

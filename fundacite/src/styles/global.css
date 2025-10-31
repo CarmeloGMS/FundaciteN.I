@@ -4,8 +4,32 @@
 
 /* Custom small utilities */
 :root{
-  --brand: #0b74da;
+  --brand: #4f50c5;
+  --warm: #f59e0b;
+  --accent: #10b981;
 }
 
 /* Example utility for preserving accessible focus outlines */
 .focus-ring:focus{outline:none;box-shadow:0 0 0 3px rgba(11,116,218,0.18);border-radius:.375rem}
+
+/* Typography and card defaults */
+html { font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+
+.card {
+  /* Use explicit utilities that work across PostCSS versions */
+  @apply rounded-lg shadow-md p-6 bg-white bg-opacity-80;
+}
+
+.dark .card {
+  background-color: rgb(15 23 42 / 0.6); /* fallback for dark backgrounds */
+}
+
+.container-card {
+  @apply max-w-6xl mx-auto px-4;
+}
+
+/* Subtle glass effect for panels */
+.glass {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(6px);
+}

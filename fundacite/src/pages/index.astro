@@ -2,37 +2,42 @@
 import Layout from '../layouts/Layout.astro';
 import MarketingMenu from '../components/MarketingMenu.astro';
 import Hero from '../components/Hero.astro';
+import Benefits from '../components/Benefits.astro';
 import ImageGallery from '../components/ImageGallery.astro';
 import VideoSection from '../components/VideoSection.astro';
+import RegistrationForm from '../components/RegistrationForm.astro';
+import FAQ from '../components/FAQ.astro';
 import ContactForm from '../components/ContactForm.astro';
 --- 
 <Layout>
   <MarketingMenu />
 
-  <main style="max-width: 1100px; margin: 2rem auto; padding: 0 1rem;">
+  <main id="main" class="max-w-6xl mx-auto py-8 px-4">
     <Hero />
 
-    <section id="informacion" style="margin: 2.5rem 0;">
-      <h2>Información</h2>
-      <p>
-        Bienvenido a la página de inicio. Aquí puedes agregar información sobre tus
-        proyectos, noticias, y cualquier contenido relevante. Usa el panel de edición
-        del sitio para actualizar textos y recursos multimedia.
-      </p>
+    <section id="informacion" class="mt-8">
+      <h2 class="text-xl font-bold mb-2">¿Buscamos innovadores?</h2>
+      <p class="text-slate-700">Sí — buscamos personas curiosas y proactivas en áreas de agricultura, biología, electrónica, salud, robótica, investigación y más. Si te apasiona resolver problemas con tecnología y ciencia, este programa es para ti.</p>
     </section>
 
-    <section id="galeria" style="margin: 2.5rem 0;">
-      <h2>Galería de imágenes</h2>
+    <Benefits />
+
+    <section id="galeria" class="mt-8">
+      <h2 class="text-xl font-bold mb-3">Galería</h2>
       <ImageGallery />
     </section>
 
-    <section id="videos" style="margin: 2.5rem 0;">
-      <h2>Videos</h2>
+    <section id="videos" class="mt-8">
+      <h2 class="text-xl font-bold mb-3">Videos</h2>
       <VideoSection />
     </section>
 
-    <section id="contacto" style="margin: 2.5rem 0;">
-      <h2>Contacto</h2>
+    <!-- Registro ahora se abre en modal desde el menú -->
+
+    <FAQ />
+
+    <section id="contacto" class="mt-8">
+      <h2 class="text-xl font-bold mb-3">Contacto</h2>
       <ContactForm />
     </section>
   </main>
