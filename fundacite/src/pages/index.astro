@@ -8,37 +8,228 @@ import VideoSection from '../components/VideoSection.astro';
 import RegistrationForm from '../components/RegistrationForm.astro';
 import FAQ from '../components/FAQ.astro';
 import ContactForm from '../components/ContactForm.astro';
+import { Image } from 'astro:assets';
+import Inicio from '../components/inicio.astro';
+
 --- 
+
 <Layout>
-  <MarketingMenu />
+    <!-- Menú de Navegación -->
+    <nav class="bg-gradient-to-r from-[#123A63] to-[#1D4B7A] text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold text-[#64FFDA]">Fundacite</div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+                <ul id="menu" class="hidden md:flex space-x-8">
+                    <li><a href="#inicio" class="hover:text-[#00D1FF] transition">Inicio</a></li>
+                    <li><a href="#contacto" class="hover:text-[#00D1FF] transition">Contacto</a></li>
+                    <li><a href="#registro" class="hover:text-[#00D1FF] transition">Registro</a></li>
+                    <li><a href="#programas" class="hover:text-[#00D1FF] transition">Programas</a></li>
+                    <li><a href="#noticias" class="hover:text-[#00D1FF] transition">Noticias</a></li>
+                    <li><a href="#galeria" class="hover:text-[#00D1FF] transition">Galería</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-  <main id="main" class="max-w-6xl mx-auto py-12 px-4 space-y-20">
-    <Hero />
-
-    <section id="informacion" class="py-8 border-b border-gray-200">
-      <h2 class="text-2xl font-bold mb-4 text-center text-indigo-700">¿Buscamos innovadores?</h2>
-      <p class="text-slate-700 text-lg text-center max-w-3xl mx-auto">Sí — buscamos personas curiosas y proactivas en áreas de agricultura, biología, electrónica, salud, robótica, investigación y más. Si te apasiona resolver problemas con tecnología y ciencia, este programa es para ti.</p>
+    <!-- Sección Hero -->
+    <section id="inicio" class="bg-gradient-to-br from-[#1B4E81] to-[#2A6AA3] py-20 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-[#64FFDA] mb-6">
+                Plataforma de Innovadores en Ciencia y Tecnología
+            </h1>
+            <p class="text-xl text-[#8892B0] max-w-3xl mx-auto mb-10">
+                Únete a la comunidad de futuros líderes en innovación científica y tecnológica. 
+                Regístrate hoy y forma parte del cambio.
+            </p>
+            <a href="#registro" class="bg-gradient-to-r from-[#00D1FF] to-[#64FFDA] text-[#0A192F] font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105">
+                Registrarse Ahora
+            </a>
+        </div>
     </section>
 
-    <div class="py-8">
-      <Benefits />
-    </div>
-
-    <section id="galeria" class="py-12 bg-gray-50 rounded-xl px-6">
-      <h2 class="text-2xl font-bold mb-8 text-center text-indigo-700">Galería</h2>
-      <ImageGallery />
+    <!-- Sección de Registro -->
+    <section id="registro" class="py-16 bg-gradient-to-r from-[#163E66] to-[#1F5A8A]">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto glass shadow-xl rounded-lg p-8">
+                <h2 class="text-3xl font-bold text-center text-[#64FFDA] mb-8">Registro de Innovadores</h2>
+                <!-- Conservamos el componente RegistrationForm -->
+                <RegistrationForm />
+            </div>
+        </div>
     </section>
 
-    <section id="videos" class="py-12">
-      <h2 class="text-2xl font-bold mb-8 text-center text-indigo-700">Videos</h2>
-      <VideoSection />
+    <!-- Sección de Programas -->
+    <section id="programas" class="py-16 bg-gradient-to-r from-[#163E66] to-[#1F5A8A]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-[#64FFDA] mb-12">Programas de Innovación</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-6 rounded-lg shadow-md text-center">
+                    <div class="text-4xl mb-4 text-[#00D1FF]">🔬</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#64FFDA]">Investigación Científica</h3>
+                    <p class="text-[#8892B0]">Programas de investigación en ciencia y tecnología para jóvenes innovadores.</p>
+                </div>
+                <div class="glass p-6 rounded-lg shadow-md text-center">
+                    <div class="text-4xl mb-4 text-[#00D1FF]">🤖</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#64FFDA]">Tecnología Avanzada</h3>
+                    <p class="text-[#8892B0]">Formación en inteligencia artificial, robótica y nuevas tecnologías.</p>
+                </div>
+                <div class="glass p-6 rounded-lg shadow-md text-center">
+                    <div class="text-4xl mb-4 text-[#00D1FF]">🌍</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#64FFDA]">Sostenibilidad</h3>
+                    <p class="text-[#8892B0]">Proyectos enfocados en soluciones tecnológicas para el medio ambiente.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Registro ahora se abre en modal desde el menú -->
+    <!-- Sección de Noticias -->
+    <section id="noticias" class="py-16 bg-gradient-to-r from-[#163E66] to-[#1F5A8A]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-[#64FFDA] mb-12">Últimas Noticias</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-2 text-[#64FFDA]">Avances en Inteligencia Artificial</h3>
+                    <p class="text-[#8892B0] mb-4">Nuevos desarrollos en IA que están transformando la industria científica.</p>
+                    <a href="#" class="text-[#00D1FF] hover:underline">Leer más →</a>
+                </div>
+                <div class="glass p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-2 text-[#64FFDA]">Tecnología Espacial</h3>
+                    <p class="text-[#8892B0] mb-4">Innovaciones en tecnología espacial que están revolucionando la exploración.</p>
+                    <a href="#" class="text-[#00D1FF] hover:underline">Leer más →</a>
+                </div>
+                <div class="glass p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-2 text-[#64FFDA]">Biotecnología</h3>
+                    <p class="text-[#8892B0] mb-4">Nuevas aplicaciones de la biotecnología en medicina y agricultura.</p>
+                    <a href="#" class="text-[#00D1FF] hover:underline">Leer más →</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="py-8">
-      <FAQ />
-    </div>
+    <!-- Sección de Galería -->
+    <section id="galeria" class="py-16 bg-gradient-to-r from-[#163E66] to-[#1F5A8A]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-[#64FFDA] mb-12">Galería de Innovación</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Laboratorio" class="w-full h-64 object-cover hover:scale-105 transition duration-300">
+                </div>
+                <div class="overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Robot" class="w-full h-64 object-cover hover:scale-105 transition duration-300">
+                </div>
+                <div class="overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Tecnología" class="w-full h-64 object-cover hover:scale-105 transition duration-300">
+                </div>
+            </div>
+        </div>
+    </section>
 
-  </main>
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="py-16 bg-gradient-to-r from-[#163E66] to-[#1F5A8A]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-[#64FFDA] mb-12">Contacto</h2>
+            <div class="max-w-2xl mx-auto glass p-8 rounded-lg shadow-md">
+                <ContactForm />
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de Página -->
+    <footer class="bg-gradient-to-r from-[#123A63] to-[#1D4B7A] text-white py-12">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">InnovadoresCT</h3>
+                        <p class="text-gray-300">Fomentando la innovación en ciencia y tecnología para un futuro sostenible.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Enlaces</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#inicio" class="text-gray-300 hover:text-white transition">Inicio</a></li>
+                            <li><a href="#contacto" class="text-gray-300 hover:text-white transition">Contacto</a></li>
+                            <li><a href="#registro" class="text-gray-300 hover:text-white transition">Registro</a></li>
+                            <li><a href="#programas" class="text-gray-300 hover:text-white transition">Programas</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Programas</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-300 hover:text-white transition">Investigación</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition">Tecnología</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition">Sostenibilidad</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white transition">Educación</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Colaboradores</h4>
+                        <div class="flex flex-col space-y-4">
+                            <!-- Logo NexusLab -->
+                            <div class="flex items-center">
+                                <img
+                                    src="/nexuslab.webp"
+                                    alt="NexusLab"
+                                    class="h-10 object-contain"
+                                >
+                            </div>
+                            <!-- Logo Fundacite -->
+                            <div class="flex items-center">
+                                <img
+                                    src="/fundacite.webp"
+                                    alt="Fundacite"
+                                    class="h-10 object-contain"
+                                >
+                            </div>
+                            <!-- Bandera de Venezuela -->
+                            <div class="flex items-center">
+                                <img
+                                    src="/logo-venezuela.webp"
+                                    alt="Bandera de Venezuela"
+                                    class="h-8 object-contain"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                    <p>&copy; 2025 InnovadoresCT. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Script para el menú móvil con comprobación de nulos
+            const menuToggle = document.getElementById('menu-toggle');
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    const menu = document.getElementById('menu');
+                    if (menu) {
+                        menu.classList.toggle('hidden');
+                        menu.classList.toggle('md:hidden');
+                    }
+                });
+            }
+
+            // Script para el desplazamiento suave sin 'this' y con comprobación
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(anchor.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        </script>
 </Layout>
+
+       

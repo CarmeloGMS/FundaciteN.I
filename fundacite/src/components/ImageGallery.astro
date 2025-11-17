@@ -4,12 +4,3 @@ const images = [
   { src: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80', alt: 'Proyecto 2' },
   { src: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1200&q=80', alt: 'Proyecto 3' }
 ];
---- 
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-  {images.map(image => (
-    <figure class="m-0">
-      <img src={image.src} alt={image.alt} class="w-full h-40 object-cover rounded-md" />
-      <figcaption class="text-sm pt-1 text-slate-600">{image.alt}</figcaption>
-    </figure>
-  ))}
-</div>

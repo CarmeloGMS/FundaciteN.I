@@ -2,99 +2,86 @@
 import RegistrationForm from '../components/RegistrationForm.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Fundacite N.I.</title>
-		<link rel="stylesheet" href="/src/styles/global.css">
-	</head>
-	<body class="antialiased text-slate-900 min-h-screen font-sans">
-		<!-- Decorative tech background layers -->
-		<div aria-hidden="true" class="fixed inset-0 -z-10 pointer-events-none">
-			<div class="absolute inset-0 bg-gradient-to-br from-[rgb(91,42,122)] to-[rgb(11,116,218)]"></div>
-			<svg class="absolute inset-0 w-full h-full opacity-24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" viewBox="0 0 800 600">
-				<defs>
-					<radialGradient id="g1" cx="20%" cy="10%">
-						<stop offset="0%" stop-color="rgb(255,255,255)" stop-opacity="0.03" />
-						<stop offset="60%" stop-color="rgb(91,42,122)" stop-opacity="0.08" />
-						<stop offset="100%" stop-color="rgb(11,116,218)" stop-opacity="0" />
-					</radialGradient>
-				</defs>
-				<rect width="800" height="600" fill="url(#g1)"></rect>
-				<!-- subtle grid lines -->
-				<g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
-					{Array.from({length:20}).map((_,i)=> (
-						<line x1={i*40} y1="0" x2={i*40} y2="600" />
-					))}
-					{Array.from({length:15}).map((_,i)=> (
-						<line x1="0" y1={i*40} x2="800" y2={i*40} />
-					))}
-				</g>
-			</svg>
-		</div>
 
-		<slot />
+<html lang="es" class="scroll-smooth">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Fundacite</title>
+	<meta name="description" content="Impulsamos la innovación científica y tecnológica" />
+	<meta property="og:title" content="Fundacite" />
+	<meta property="og:description" content="Impulsamos la innovación científica y tecnológica" />
+	<meta property="og:image" content="/og-image.png" />
+	<link rel="icon" href="/logo.svg" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="/src/styles/global.css">
+	<style>
+		:root { --font-sans: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Noto Sans', 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji'; }
+		h1,h2,h3,h4 { font-family: 'Poppins', var(--font-sans); }
+		body { font-family: var(--font-sans); }
+	</style>
+</head>
+<body>
+<header class="sticky top-0 z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur border-b border-slate-200/60 dark:border-slate-800">
+<nav class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+<a href="/" class="flex items-center gap-2 font-semibold">
+		<img src="/nexuslab.png" alt="Fundacite" class="h-14 w-14 md:h-20 md:w-20 lg:h-24 lg:w-24" />
+<span>Fundacite</span>
+</a>
+<div class="hidden md:flex items-center gap-6 text-sm">
+<a href="/programas" class="hover:text-brand-primary">Programas</a>
+<a href="/eventos" class="hover:text-brand-primary">Eventos</a>
+<a href="/sobre" class="hover:text-brand-primary">Sobre</a>
+<a href="/contacto" class="inline-flex items-center justify-center rounded-xl px-4 py-2 font-medium bg-brand-secondary text-slate-900 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 transition-all duration-300">Postular</a>
+</div>
+</nav>
+</header>
 
-		<!-- Registration modal (hidden by default) -->
 
-		<!-- Footer -->
-		<footer class="mt-12 border-t border-slate-200/10 py-6">
-			<div class="container mx-auto px-4">
-				<!-- Responsive logo group: stacked on mobile, row on md+ -->
-				<div class="flex flex-col md:flex-row items-center justify-center gap-6">
-					<img src="/logo-venezuela.webp" alt="Logo Venezuela" class="h-12 md:h-16 lg:h-24" />
-					<img src="/fundacite.webp" alt="Fundacite" class="h-12 md:h-16 lg:h-24" />
-				</div>
-				<p class="mt-4 text-center text-sm text-slate-300">© {new Date().getFullYear()} Fundacite N.I. — Todos los derechos reservados</p>
-			</div>
-		</footer>
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<slot />
+</main>
 
-		<div id="registerModal" class="fixed inset-0 z-50 hidden items-center justify-center px-4">
-			<div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="window.closeRegisterModal()" />
-			<div class="relative max-w-3xl w-full">
-				<div class="card">
-					<div class="flex items-start justify-between">
-						<h2 class="text-xl font-bold">Registro de Innovador</h2>
-						<button aria-label="Cerrar" class="text-slate-600 hover:text-slate-800" onclick="window.closeRegisterModal()">✕</button>
-					</div>
-					<div class="mt-4">
-						<RegistrationForm />
-					</div>
-				</div>
-			</div>
-		</div>
 
-		<script>
-			// Expose functions to open/close registration modal
-			/** Attach to window in a safe, typed way */
-			(function(){
-				function openRegisterModal(){
-					const modal = document.getElementById('registerModal');
-					if(modal){
-						modal.classList.remove('hidden');
-						document.body.classList.add('overflow-hidden');
-					}
-				}
-				function closeRegisterModal(){
-					const modal = document.getElementById('registerModal');
-					if(modal){
-						modal.classList.add('hidden');
-						document.body.classList.remove('overflow-hidden');
-					}
-				}
-				// @ts-ignore - attach helper functions
-				window.openRegisterModal = openRegisterModal;
-				// @ts-ignore
-				window.closeRegisterModal = closeRegisterModal;
-			})();
-		</script>
-	</body>
+<footer class="mt-10 border-t border-slate-200 dark:border-slate-800 py-10">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8 text-sm">
+<div>
+<div class="flex items-center gap-2 font-semibold mb-3">
+<img src="/logo.svg" alt="Fundacite" class="h-6 w-6" /> Fundacite
+</div>
+<p class="opacity-80">Impulsamos la innovación en ciencia y tecnología a nivel regional.</p>
+</div>
+<div>
+<h4 class="font-semibold mb-2">Navegación</h4>
+<ul class="space-y-1 opacity-90">
+<li><a href="/programas">Programas</a></li>
+<li><a href="/eventos">Eventos</a></li>
+<li><a href="/sobre">Sobre</a></li>
+<li><a href="/contacto">Contacto</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold mb-2">Recursos</h4>
+<ul class="space-y-1 opacity-90">
+<li><a href="#">Convocatorias</a></li>
+<li><a href="#">Boletín</a></li>
+<li><a href="#">Política de privacidad</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-semibold mb-2">Contacto</h4>
+<p class="opacity-90">correo@fundacite.org<br/>+58 (000) 000-0000</p>
+</div>
+</div>
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 text-xs opacity-70 mt-6">© {new Date().getFullYear()} Fundacite. Todos los derechos reservados.</div>
+</footer>
+<script>
+// Toggle dark mode simple (puedes reemplazar por un switch real)
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+document.documentElement.classList.add('dark');
+}
+</script>
+</body>
 </html>
-
-<style>
-	html, body { margin: 0; width: 100%; height: 100%; }
-</style>
