@@ -2,7 +2,6 @@
 import RegistrationForm from '../components/RegistrationForm.astro';
 ---
 
-
 <html lang="es" class="scroll-smooth">
 <head>
 	<meta charset="utf-8" />
@@ -16,72 +15,152 @@ import RegistrationForm from '../components/RegistrationForm.astro';
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 	<link rel="stylesheet" href="/src/styles/global.css">
 	<style>
 		:root { --font-sans: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Noto Sans', 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji'; }
 		h1,h2,h3,h4 { font-family: 'Poppins', var(--font-sans); }
 		body { font-family: var(--font-sans); }
+		
+		/* Motion Card Enhancements */
+		.motion-card {
+			will-change: transform, opacity, filter;
+			transform-style: preserve-3d;
+		}
+		
+		.motion-card:hover {
+			filter: brightness(1.1) drop-shadow(0 0 20px rgba(0, 209, 255, 0.3));
+		}
+		
+		/* Progress Bar Enhancement */
+		.progress-bar {
+			background: linear-gradient(90deg, #00D1FF, #64FFDA, #00D1FF) !important;
+			box-shadow: 0 0 20px rgba(0, 209, 255, 0.8), 0 0 40px rgba(100, 255, 218, 0.4) !important;
+		}
+		
+		/* Custom Glow Pulse Animation */
+		@keyframes glowPulse {
+			0% {
+				text-shadow: 0 0 0px rgba(0, 209, 255, 0);
+			}
+			50% {
+				text-shadow: 0 0 30px rgba(0, 209, 255, 0.8);
+			}
+			100% {
+				text-shadow: 0 0 20px rgba(0, 209, 255, 0.4);
+			}
+		}
 	</style>
 </head>
 <body>
-<header class="sticky top-0 z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur border-b border-slate-200/60 dark:border-slate-800">
-<nav class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-<a href="/" class="flex items-center gap-2 font-semibold">
-		<img src="/nexuslab.png" alt="Fundacite" class="h-14 w-14 md:h-20 md:w-20 lg:h-24 lg:w-24" />
-<span>Fundacite</span>
+<header class="sticky top-0 z-50 bg-gradient-to-r from-[#123A63]/95 to-[#1D4B7A]/95 backdrop-blur-md border-b border-[#00D1FF]/20 shadow-lg transition-all duration-300">
+<nav class="w-full px-6 lg:px-12 xl:px-24 flex items-center justify-between h-20">
+<a href="/" class="flex items-center gap-3 font-semibold group">
+		<img src="/nexuslab.png" alt="NexusLab" class="h-14 md:h-16 lg:h-18 object-contain transition-transform duration-300 group-hover:scale-300" />
 </a>
-<div class="hidden md:flex items-center gap-6 text-sm">
-<a href="/programas" class="hover:text-brand-primary">Programas</a>
-<a href="/eventos" class="hover:text-brand-primary">Eventos</a>
-<a href="/sobre" class="hover:text-brand-primary">Sobre</a>
-<a href="/contacto" class="inline-flex items-center justify-center rounded-xl px-4 py-2 font-medium bg-brand-secondary text-slate-900 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-offset-2 transition-all duration-300">Postular</a>
+<div class="hidden md:flex items-center gap-8 text-sm">
+<a href="#inicio" class="text-[#8892B0] hover:text-[#64FFDA] transition-colors duration-300 font-medium">Inicio</a>
+<a href="#programas" class="text-[#8892B0] hover:text-[#64FFDA] transition-colors duration-300 font-medium">Programas</a>
+<a href="#noticias" class="text-[#8892B0] hover:text-[#64FFDA] transition-colors duration-300 font-medium">Noticias</a>
+<a href="#galeria" class="text-[#8892B0] hover:text-[#64FFDA] transition-colors duration-300 font-medium">Galería</a>
+<a href="#contacto" class="inline-flex items-center justify-center rounded-lg px-6 py-2 font-medium bg-gradient-to-r from-[#00D1FF] to-[#64FFDA] text-[#0A192F] hover:shadow-lg hover:shadow-[#00D1FF]/50 transition-all duration-300 transform hover:scale-105">Contacto</a>
 </div>
-</nav>
+</nav>	
 </header>
 
 
-<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<main class="w-full">
 <slot />
 </main>
 
 
-<footer class="mt-10 border-t border-slate-200 dark:border-slate-800 py-10">
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8 text-sm">
-<div>
-<div class="flex items-center gap-2 font-semibold mb-3">
-<img src="/logo.svg" alt="Fundacite" class="h-6 w-6" /> Fundacite
-</div>
-<p class="opacity-80">Impulsamos la innovación en ciencia y tecnología a nivel regional.</p>
-</div>
-<div>
-<h4 class="font-semibold mb-2">Navegación</h4>
-<ul class="space-y-1 opacity-90">
-<li><a href="/programas">Programas</a></li>
-<li><a href="/eventos">Eventos</a></li>
-<li><a href="/sobre">Sobre</a></li>
-<li><a href="/contacto">Contacto</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-semibold mb-2">Recursos</h4>
-<ul class="space-y-1 opacity-90">
-<li><a href="#">Convocatorias</a></li>
-<li><a href="#">Boletín</a></li>
-<li><a href="#">Política de privacidad</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-semibold mb-2">Contacto</h4>
-<p class="opacity-90">correo@fundacite.org<br/>+58 (000) 000-0000</p>
-</div>
-</div>
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 text-xs opacity-70 mt-6">© {new Date().getFullYear()} Fundacite. Todos los derechos reservados.</div>
-</footer>
+
+<div class="progress-bar" style="position: fixed; top: 0; left: 0; width: 0; height: 10px; background-color: #00D1FF; border-radius: 0 0 10px 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); z-index: 1000;"></div>
 <script>
 // Toggle dark mode simple (puedes reemplazar por un switch real)
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-document.documentElement.classList.add('dark');
+  document.documentElement.classList.add('dark');
 }
+</script>
+<script type="module">
+import { animate, inView, stagger, scroll } from 'motion';
+const px = () => {
+const els = document.querySelectorAll('[data-parallax]');
+const y = window.scrollY || document.documentElement.scrollTop;
+els.forEach((el) => {
+const speed = parseFloat(el.getAttribute('data-speed') || '0.2');
+el.style.transform = `translate3d(0, ${y * speed}px, 0)`;
+});
+};
+window.addEventListener('scroll', px, { passive: true });
+px();
+inView('.motion-card', ({ target }) => {
+animate(target, { 
+  opacity: [0, 1], 
+  y: [30, 0],
+  scale: [0.9, 1],
+  filter: ['blur(10px)', 'blur(0px)']
+}, { 
+  duration: 0.7, 
+  easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' 
+});
+});
+inView('[data-stagger]', ({ target }) => {
+const items = target.querySelectorAll('.motion-card');
+animate(items, { 
+  opacity: [0, 1], 
+  y: [40, 0],
+  scale: [0.85, 1],
+  filter: ['blur(15px)', 'blur(0px)']
+}, { 
+  duration: 0.6, 
+  delay: stagger(0.1), 
+  easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' 
+});
+});
+inView('.motion-section', ({ target }) => {
+animate(target, { opacity: [0, 1], y: [16, 0] }, { duration: 0.6, easing: 'ease-out' });
+});
+
+// Spectacular entrance animation for section headings with Animate CSS
+// Only animate when element enters viewport
+const headings = document.querySelectorAll('[data-scroll-heading]');
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px'
+};
+
+const headingObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+      entry.target.classList.add('animate__animated', 'animate__bounceInDown', 'animated');
+      entry.target.style.textShadow = '0 0 20px rgba(0, 209, 255, 0.6)';
+      entry.target.style.animation = 'glowPulse 1.4s ease-in-out';
+      // Stop observing after animation triggers
+      headingObserver.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+headings.forEach(heading => headingObserver.observe(heading));
+
+// Section heading scroll animations
+document.querySelectorAll('[data-scroll-animate]').forEach((section) => {
+  const heading = section.querySelector('[data-scroll-heading]');
+  if (heading) {
+    scroll(animate(heading, { y: [-400, 400] }, { ease: 'linear' }), {
+      target: heading,
+    });
+  }
+});
+
+const progressBar = document.querySelector('.progress-bar');
+window.addEventListener('scroll', () => {
+const scrollDistance = window.scrollY;
+const maxScrollDistance = document.body.offsetHeight - window.innerHeight;
+const progress = (scrollDistance / maxScrollDistance) * 100;
+progressBar.style.width = `${progress}%`;
+});
 </script>
 </body>
 </html>

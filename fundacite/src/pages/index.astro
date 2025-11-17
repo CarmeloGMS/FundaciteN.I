@@ -10,198 +10,200 @@ import FAQ from '../components/FAQ.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { Image } from 'astro:assets';
 import Inicio from '../components/inicio.astro';
+import Footer from '../components/Footer.astro';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 --- 
 
 <Layout>
-    <!-- Menú de Navegación -->
-    <nav class="bg-gradient-to-r from-[#123A63] to-[#1D4B7A] text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <div class="text-xl font-bold text-[#64FFDA]">Fundacite</div>
-                <div class="md:hidden">
-                    <button id="menu-toggle" class="focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-                <ul id="menu" class="hidden md:flex space-x-8">
-                    <li><a href="#inicio" class="hover:text-[#00D1FF] transition">Inicio</a></li>
-                    <li><a href="#contacto" class="hover:text-[#00D1FF] transition">Contacto</a></li>
-                    <li><a href="#registro" class="hover:text-[#00D1FF] transition">Registro</a></li>
-                    <li><a href="#programas" class="hover:text-[#00D1FF] transition">Programas</a></li>
-                    <li><a href="#noticias" class="hover:text-[#00D1FF] transition">Noticias</a></li>
-                    <li><a href="#galeria" class="hover:text-[#00D1FF] transition">Galería</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <!-- Sección Hero -->
-    <section id="inicio" class="bg-gradient-to-br from-[#1B4E81] to-[#2A6AA3] py-20 text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold text-[#64FFDA] mb-6">
+    <section id="inicio" class="relative overflow-hidden min-h-screen w-full flex items-center justify-center text-white">
+        <!-- Video de fondo -->
+        <div class="absolute inset-0 w-full h-full overflow-hidden">
+            <video 
+                autoplay 
+                muted 
+                loop 
+                playsinline
+                class="absolute min-w-full min-h-full object-cover"
+            >
+                <source src="/prueba.mp4" type="video/mp4">
+                <!-- Fallback gradient si el video no carga -->
+            </video>
+            <!-- Overlay oscuro -->
+            <div class="absolute inset-0 bg-gradient-to-br from-[#1B4E81]/90 to-[#2A6AA3]/85"></div>
+        </div>
+        
+        <!-- Capas parallax decorativas -->
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
+            <div data-parallax data-speed="0.15" class="absolute -top-20 -left-10 w-72 h-72 rounded-full bg-cyan-400/20 blur-3xl"></div>
+            <div data-parallax data-speed="0.30" class="absolute top-24 -right-10 w-96 h-96 rounded-full bg-emerald-400/10 blur-3xl"></div>
+            <div data-parallax data-speed="0.22" class="absolute bottom-0 left-1/3 w-80 h-80 rounded-full bg-indigo-400/10 blur-3xl"></div>
+        </div>
+        
+        <!-- Contenido Hero (sobre el video) -->
+        <div class="w-full px-6 lg:px-12 xl:px-24 text-center relative z-10 max-w-7xl" data-stagger>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-[#64FFDA] mb-8 leading-tight animate__fadeInUp animate__animated animate__bounce animate__delay-1s">
                 Plataforma de Innovadores en Ciencia y Tecnología
             </h1>
-            <p class="text-xl text-[#8892B0] max-w-3xl mx-auto mb-10">
+            <p class="text-lg md:text-xl text-[#8892B0] max-w-3xl mx-auto mb-12 leading-relaxed animate__fadeInUp animate__animated animate__bounce animate__delay-2s">
                 Únete a la comunidad de futuros líderes en innovación científica y tecnológica. 
                 Regístrate hoy y forma parte del cambio.
             </p>
-            <a href="#registro" class="bg-gradient-to-r from-[#00D1FF] to-[#64FFDA] text-[#0A192F] font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105">
+            <a href="#registro" class="inline-block motion-card bg-gradient-to-r from-[#00D1FF] to-[#64FFDA] text-[#0A192F] font-bold py-4 px-10 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                 Registrarse Ahora
             </a>
         </div>
     </section>
 
     <!-- Sección de Registro -->
-    <section id="registro" class="py-16 bg-gradient-to-r from-[#163E66] to-[#1F5A8A]">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto glass shadow-xl rounded-lg p-8">
-                <h2 class="text-3xl font-bold text-center text-[#64FFDA] mb-8">Registro de Innovadores</h2>
-                <!-- Conservamos el componente RegistrationForm -->
+    <section id="registro" class="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-[#163E66] to-[#1F5A8A]" data-scroll-animate>
+        <div class="w-full px-6 lg:px-12 xl:px-24 max-w-7xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#64FFDA] mb-4 motion-card" data-scroll-heading>Registro de Innovadores</h2>
+                <p class="text-[#8892B0] max-w-2xl mx-auto">Completa el formulario para unirte a nuestra red de innovadores y acceder a todos nuestros programas y recursos.</p>
+            </div>
+            <div class="max-w-4xl mx-auto glass shadow-2xl rounded-2xl p-8 md:p-12 border border-white/10">
                 <RegistrationForm />
             </div>
         </div>
     </section>
 
     <!-- Sección de Programas -->
-    <section id="programas" class="py-16 bg-gradient-to-r from-[#163E66] to-[#1F5A8A]">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-[#64FFDA] mb-12">Programas de Innovación</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass p-6 rounded-lg shadow-md text-center">
-                    <div class="text-4xl mb-4 text-[#00D1FF]">🔬</div>
-                    <h3 class="text-xl font-bold mb-2 text-[#64FFDA]">Investigación Científica</h3>
-                    <p class="text-[#8892B0]">Programas de investigación en ciencia y tecnología para jóvenes innovadores.</p>
+    <section id="programas" class="min-h-screen w-full flex items-center justify-center bg-sky-700/100" data-scroll-animate>
+        <div class="w-full px-6 lg:px-12 xl:px-24 max-w-7xl">
+            <div class="text-center mb-16">
+                <h4 class="text-3xl md:text-4xl font-bold text-[#64FFDA] mb-4 motion-card animate__fadeInUp animate__animated animate__bounce animate__delay-1s" data-scroll-heading>Programas de Innovación</h4>
+                <p class="text-[#8892B0] max-w-2xl mx-auto animate__fadeInUp animate__animated animate__bounce animate__delay-2s">Descubre nuestras líneas de acción para impulsar el talento científico y tecnológico</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto" data-stagger>
+
+                <div class="motion-card glass p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 text-center border border-white/10 hover:border-[#00D1FF]/30 animate__fadeInUp animate__animated animate__bounce animate__delay-1s">
+                    <div class="text-5xl mb-6 text-[#00D1FF]">🔬</div>
+                    <h3 class="text-2xl font-bold mb-4 text-[#64FFDA]">Investigación Científica</h3>
+                    <p class="text-[#8892B0] leading-relaxed">Programas de investigación en ciencia y tecnología para jóvenes innovadores.</p>
                 </div>
-                <div class="glass p-6 rounded-lg shadow-md text-center">
-                    <div class="text-4xl mb-4 text-[#00D1FF]">🤖</div>
-                    <h3 class="text-xl font-bold mb-2 text-[#64FFDA]">Tecnología Avanzada</h3>
-                    <p class="text-[#8892B0]">Formación en inteligencia artificial, robótica y nuevas tecnologías.</p>
+
+                <div class="motion-card glass p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 text-center border border-white/10 hover:border-[#00D1FF]/30 animate__fadeInUp animate__animated animate__bounce animate__delay-2s">
+                    <div class="text-5xl mb-6 text-[#00D1FF]">🤖</div>
+                    <h3 class="text-2xl font-bold mb-4 text-[#64FFDA]">Tecnología Avanzada</h3>
+                    <p class="text-[#8892B0] leading-relaxed">Formación en inteligencia artificial, robótica y nuevas tecnologías.</p>
                 </div>
-                <div class="glass p-6 rounded-lg shadow-md text-center">
-                    <div class="text-4xl mb-4 text-[#00D1FF]">🌍</div>
-                    <h3 class="text-xl font-bold mb-2 text-[#64FFDA]">Sostenibilidad</h3>
-                    <p class="text-[#8892B0]">Proyectos enfocados en soluciones tecnológicas para el medio ambiente.</p>
+
+                <div class="motion-card glass p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 text-center border border-white/10 hover:border-[#00D1FF]/30 animate__fadeInUp animate__animated animate__bounce animate__delay-3s">
+                    <div class="text-5xl mb-6 text-[#00D1FF]">🌍</div>
+                    <h3 class="text-2xl font-bold mb-4 text-[#64FFDA]">Sostenibilidad</h3>
+                    <p class="text-[#8892B0] leading-relaxed">Proyectos enfocados en soluciones tecnológicas para el medio ambiente.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Sección de Noticias -->
-    <section id="noticias" class="py-16 bg-gradient-to-r from-[#163E66] to-[#1F5A8A]">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-[#64FFDA] mb-12">Últimas Noticias</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-2 text-[#64FFDA]">Avances en Inteligencia Artificial</h3>
-                    <p class="text-[#8892B0] mb-4">Nuevos desarrollos en IA que están transformando la industria científica.</p>
-                    <a href="#" class="text-[#00D1FF] hover:underline">Leer más →</a>
+    <section id="noticias" class="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-[#163E66] to-[#1F5A8A]" data-scroll-animate>
+        <div class="w-full px-6 lg:px-12 xl:px-24 max-w-7xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#64FFDA] mb-4 motion-card" data-scroll-heading>Últimas Noticias</h2>
+                <p class="text-[#8892B0] max-w-2xl mx-auto">Mantente informado sobre los últimos avances en ciencia y tecnología</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto" data-stagger>
+                <div class="motion-card glass p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/10 hover:border-[#00D1FF]/30">
+                    <h3 class="text-2xl font-bold mb-4 text-[#64FFDA]">Avances en Inteligencia Artificial</h3>
+                    <p class="text-[#8892B0] mb-6 leading-relaxed">Nuevos desarrollos en IA que están transformando la industria científica.</p>
+                    <a href="#" class="inline-flex items-center text-[#00D1FF] hover:text-[#64FFDA] font-medium transition-colors">Leer más <span class="ml-2">→</span></a>
                 </div>
-                <div class="glass p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-2 text-[#64FFDA]">Tecnología Espacial</h3>
-                    <p class="text-[#8892B0] mb-4">Innovaciones en tecnología espacial que están revolucionando la exploración.</p>
-                    <a href="#" class="text-[#00D1FF] hover:underline">Leer más →</a>
+                <div class="motion-card glass p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/10 hover:border-[#00D1FF]/30">
+                    <h3 class="text-2xl font-bold mb-4 text-[#64FFDA]">Tecnología Espacial</h3>
+                    <p class="text-[#8892B0] mb-6 leading-relaxed">Innovaciones en tecnología espacial que están revolucionando la exploración.</p>
+                    <a href="#" class="inline-flex items-center text-[#00D1FF] hover:text-[#64FFDA] font-medium transition-colors">Leer más <span class="ml-2">→</span></a>
                 </div>
-                <div class="glass p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-2 text-[#64FFDA]">Biotecnología</h3>
-                    <p class="text-[#8892B0] mb-4">Nuevas aplicaciones de la biotecnología en medicina y agricultura.</p>
-                    <a href="#" class="text-[#00D1FF] hover:underline">Leer más →</a>
+                <div class="motion-card glass p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/10 hover:border-[#00D1FF]/30">
+                    <h3 class="text-2xl font-bold mb-4 text-[#64FFDA]">Biotecnología</h3>
+                    <p class="text-[#8892B0] mb-6 leading-relaxed">Nuevas aplicaciones de la biotecnología en medicina y agricultura.</p>
+                    <a href="#" class="inline-flex items-center text-[#00D1FF] hover:text-[#64FFDA] font-medium transition-colors">Leer más <span class="ml-2">→</span></a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Sección de Galería -->
-    <section id="galeria" class="py-16 bg-gradient-to-r from-[#163E66] to-[#1F5A8A]">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-[#64FFDA] mb-12">Galería de Innovación</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="overflow-hidden rounded-lg">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Laboratorio" class="w-full h-64 object-cover hover:scale-105 transition duration-300">
-                </div>
-                <div class="overflow-hidden rounded-lg">
-                    <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Robot" class="w-full h-64 object-cover hover:scale-105 transition duration-300">
-                </div>
-                <div class="overflow-hidden rounded-lg">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Tecnología" class="w-full h-64 object-cover hover:scale-105 transition duration-300">
+    <section id="galeria" class="min-h-screen w-full flex items-center justify-center bg-sky-700/100" data-scroll-animate>
+        <div class="w-full px-6 lg:px-12 xl:px-24 max-w-10xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#64FFDA] mb-4 motion-card" data-scroll-heading>Galería de Innovación</h2>
+                <p class="text-[#8892B0] max-w-2xl mx-auto">Descubre nuestras instalaciones, proyectos y eventos destacados</p>
+            </div>
+            <!-- Image Slider -->
+            <div class="max-full mx-auto">
+                <div class="relative overflow-hidden rounded-2xl shadow-2xl border border-white/10">
+                    <div class="gallery-slider" id="gallerySlider">
+                        <div class="gallery-slide active">
+                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Laboratorio" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Robot" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tecnología" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Innovación" class="w-full h-96 object-cover">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Desarrollo" class="w-full h-96 object-cover">
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Buttons -->
+                    <button class="gallery-btn gallery-prev" id="prevBtn" aria-label="Imagen anterior">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <button class="gallery-btn gallery-next" id="nextBtn" aria-label="Siguiente imagen">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Dots Indicator -->
+                    <div class="gallery-dots" id="galleryDots">
+                        <button class="dot active" data-index="0"></button>
+                        <button class="dot" data-index="1"></button>
+                        <button class="dot" data-index="2"></button>
+                        <button class="dot" data-index="3"></button>
+                        <button class="dot" data-index="4"></button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Sección de Contacto -->
-    <section id="contacto" class="py-16 bg-gradient-to-r from-[#163E66] to-[#1F5A8A]">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-[#64FFDA] mb-12">Contacto</h2>
-            <div class="max-w-2xl mx-auto glass p-8 rounded-lg shadow-md">
-                <ContactForm />
+    <section id="contacto" class="w-full bg-gradient-to-r from-[#163E66] to-[#1F5A8A]">
+        <!-- Contact Form -->
+        <ContactForm />
+        
+        <!-- Google Maps Small -->
+        <div class="w-full px-6 lg:px-12 xl:px-24 py-8">
+            <div class="w-full max-w-2xl mx-auto h-64 rounded-lg overflow-hidden shadow-lg border border-white/10">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d693.2662943566613!2d-66.92770073532562!3d10.602113879456969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a5d0021f5a14f%3A0x4d7d6001fe5ea578!2sGimnasio%20Vertical%20La%20Guaira!5e0!3m2!1ses!2sve!4v1763400921751!5m2!1ses!2sve" 
+                    class="w-full h-full border-0" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </div>
     </section>
 
-    <!-- Pie de Página -->
-    <footer class="bg-gradient-to-r from-[#123A63] to-[#1D4B7A] text-white py-12">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div>
-                        <h3 class="text-xl font-bold mb-4">InnovadoresCT</h3>
-                        <p class="text-gray-300">Fomentando la innovación en ciencia y tecnología para un futuro sostenible.</p>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Enlaces</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#inicio" class="text-gray-300 hover:text-white transition">Inicio</a></li>
-                            <li><a href="#contacto" class="text-gray-300 hover:text-white transition">Contacto</a></li>
-                            <li><a href="#registro" class="text-gray-300 hover:text-white transition">Registro</a></li>
-                            <li><a href="#programas" class="text-gray-300 hover:text-white transition">Programas</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Programas</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-300 hover:text-white transition">Investigación</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white transition">Tecnología</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white transition">Sostenibilidad</a></li>
-                            <li><a href="#" class="text-gray-300 hover:text-white transition">Educación</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Colaboradores</h4>
-                        <div class="flex flex-col space-y-4">
-                            <!-- Logo NexusLab -->
-                            <div class="flex items-center">
-                                <img
-                                    src="/nexuslab.webp"
-                                    alt="NexusLab"
-                                    class="h-10 object-contain"
-                                >
-                            </div>
-                            <!-- Logo Fundacite -->
-                            <div class="flex items-center">
-                                <img
-                                    src="/fundacite.webp"
-                                    alt="Fundacite"
-                                    class="h-10 object-contain"
-                                >
-                            </div>
-                            <!-- Bandera de Venezuela -->
-                            <div class="flex items-center">
-                                <img
-                                    src="/logo-venezuela.webp"
-                                    alt="Bandera de Venezuela"
-                                    class="h-8 object-contain"
-                                >
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                    <p>&copy; 2025 InnovadoresCT. Todos los derechos reservados.</p>
-                </div>
-            </div>
-        </footer>
+
+    
+    </div>
+
+  
 
         <script>
             // Script para el menú móvil con comprobación de nulos
@@ -229,7 +231,168 @@ import Inicio from '../components/inicio.astro';
                     }
                 });
             });
-        </script>
-</Layout>
 
-       
+            // Gallery Slider Functionality
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.gallery-slide');
+            const dots = document.querySelectorAll('.dot');
+            const totalSlides = slides.length;
+
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                slides[n].classList.add('active');
+                dots[n].classList.add('active');
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                showSlide(currentSlide);
+            }
+
+            document.getElementById('nextBtn').addEventListener('click', nextSlide);
+            document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    currentSlide = parseInt(this.getAttribute('data-index'));
+                    showSlide(currentSlide);
+                });
+            });
+
+            // Auto-advance slides every 5 seconds
+            setInterval(nextSlide, 5000);
+        </script>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+  }
+
+  section {
+    scroll-snap-align: start;
+    perspective: 2000px;
+    perspective-origin: center center;
+  }
+
+  [data-scroll-heading] {
+    position: relative;
+    display: inline-block;
+    will-change: transform, opacity, filter, text-shadow;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    backface-visibility: hidden;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+  }
+
+  /* Gallery Slider Styles */
+  .gallery-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .gallery-slide {
+    display: none;
+    width: 100%;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .gallery-slide.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .gallery-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 209, 255, 0.8);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gallery-btn:hover {
+    background: rgba(0, 209, 255, 1);
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.6);
+  }
+
+  .gallery-prev {
+    left: 16px;
+  }
+
+  .gallery-next {
+    right: 16px;
+  }
+
+  .gallery-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dot.active {
+    background: #00D1FF;
+    box-shadow: 0 0 10px rgba(0, 209, 255, 0.8);
+    width: 32px;
+    border-radius: 6px;
+  }
+
+  .dot:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  /* Scroll progress bar */
+  .scroll-progress {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #00D1FF, #64FFDA);
+    bottom: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.5);
+  }
+</style>
+
+</Layout>
