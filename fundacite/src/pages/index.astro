@@ -13,7 +13,7 @@ import Inicio from '../components/inicio.astro';
 import Footer from '../components/Footer.astro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
---- 
+---
 
 <Layout>
     <!-- Sección Hero -->
@@ -50,24 +50,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
                 Únete a la comunidad de futuros líderes en innovación científica y tecnológica. 
                 Regístrate hoy y forma parte del cambio.
             </p>
-            <a href="#registro" class="inline-block motion-card bg-gradient-to-r from-[#00D1FF] to-[#64FFDA] text-[#0A192F] font-bold py-4 px-10 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+            <button
+                id="openRegistrationModal"
+                type="button"
+                class="inline-block motion-card bg-gradient-to-r from-[#00D1FF] to-[#64FFDA] text-[#0A192F] font-bold py-4 px-10 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+            >
                 Registrarse Ahora
-            </a>
+            </button>
         </div>
     </section>
-
-    <!-- Sección de Registro -->
-    <section id="registro" class="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-[#163E66] to-[#1F5A8A]" data-scroll-animate>
-        <div class="w-full px-6 lg:px-12 xl:px-24 max-w-7xl">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-[#64FFDA] mb-4 motion-card" data-scroll-heading>Registro de Innovadores</h2>
-                <p class="text-[#8892B0] max-w-2xl mx-auto">Completa el formulario para unirte a nuestra red de innovadores y acceder a todos nuestros programas y recursos.</p>
-            </div>
-            <div class="max-w-4xl mx-auto glass shadow-2xl rounded-2xl p-8 md:p-12 border border-white/10">
+    <!-- Modal de Registro -->
+    <div
+        id="registrationModal"
+        class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60"
+    >
+        <div class="w-full max-w-4xl mx-4 bg-white rounded-2xl shadow-2xl relative">
+            <button
+                id="closeRegistrationModal"
+                type="button"
+                class="absolute top-3 right-3 text-slate-600 hover:text-slate-900 text-2xl leading-none"
+            >
+            </button>
+            <div class="p-4 md:p-8">
                 <RegistrationForm />
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Sección de Programas -->
     <section id="programas" class="min-h-screen w-full flex items-center justify-center bg-sky-700/100" data-scroll-animate>
@@ -75,6 +83,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
             <div class="text-center mb-16">
                 <h4 class="text-3xl md:text-4xl font-bold text-[#64FFDA] mb-4 motion-card animate__fadeInUp animate__animated animate__bounce animate__delay-1s" data-scroll-heading>Programas de Innovación</h4>
                 <p class="text-[#8892B0] max-w-2xl mx-auto animate__fadeInUp animate__animated animate__bounce animate__delay-2s">Descubre nuestras líneas de acción para impulsar el talento científico y tecnológico</p>
+            </div>
+
+            <div class="mb-12 flex justify-center">
+                <div class="w-full max-w-4xl h-80 relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-sky-900/60">
+                    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.11.6/build/spline-viewer.js"></script>
+                    <spline-viewer
+                        url="https://prod.spline.design/KqQ2u7Z-ueKYiLne/scene.splinecode"
+                        class="absolute inset-0 w-full h-full"
+                    ></spline-viewer>
+                </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto" data-stagger>
@@ -139,19 +157,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
                 <div class="relative overflow-hidden rounded-2xl shadow-2xl border border-white/10">
                     <div class="gallery-slider" id="gallerySlider">
                         <div class="gallery-slide active">
-                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Laboratorio" class="w-full h-96 object-cover">
+                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Laboratorio" class="w-full h-[32rem] object-cover">
                         </div>
                         <div class="gallery-slide">
-                            <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Robot" class="w-full h-96 object-cover">
+                            <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Robot" class="w-full h-[32rem] object-cover">
                         </div>
                         <div class="gallery-slide">
-                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tecnología" class="w-full h-96 object-cover">
+                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tecnología" class="w-full h-[32rem] object-cover">
                         </div>
                         <div class="gallery-slide">
-                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Innovación" class="w-full h-96 object-cover">
+                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Innovación" class="w-full h-[32rem] object-cover">
                         </div>
                         <div class="gallery-slide">
-                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Desarrollo" class="w-full h-96 object-cover">
+                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Desarrollo" class="w-full h-[32rem] object-cover">
                         </div>
                     </div>
                     
@@ -199,38 +217,49 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
         </div>
     </section>
 
-
-    
-    </div>
-
-  
-
-        <script>
-            // Script para el menú móvil con comprobación de nulos
-            const menuToggle = document.getElementById('menu-toggle');
-            if (menuToggle) {
-                menuToggle.addEventListener('click', function() {
-                    const menu = document.getElementById('menu');
-                    if (menu) {
-                        menu.classList.toggle('hidden');
-                        menu.classList.toggle('md:hidden');
-                    }
+    <script>
+        // Script para el menú móvil con comprobación de nulos
+        const menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                const menu = document.getElementById('menu');
+                if (menu) {
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('md:hidden');
+                }
                 });
             }
 
             // Script para el desplazamiento suave sin 'this' y con comprobación
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(anchor.getAttribute('href'));
-                    if (target) {
-                        window.scrollTo({
-                            top: target.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+                    // Modal de registro
+        const openRegistrationBtn = document.getElementById('openRegistrationModal');
+        const registrationModal = document.getElementById('registrationModal');
+        const closeRegistrationBtn = document.getElementById('closeRegistrationModal');
+
+        if (openRegistrationBtn && registrationModal && closeRegistrationBtn) {
+            const openModal = () => {
+                registrationModal.classList.remove('hidden');
+                registrationModal.classList.add('flex');
+            };
+
+            const closeModal = () => {
+                registrationModal.classList.add('hidden');
+                registrationModal.classList.remove('flex');
+            };
+
+            openRegistrationBtn.addEventListener('click', openModal);
+            closeRegistrationBtn.addEventListener('click', closeModal);
+
+            registrationModal.addEventListener('click', (event) => {
+                if (event.target === registrationModal) {
+                    closeModal();
+                }
             });
+
+            // Exponer cierre global para usarlo desde el formulario
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (window)['closeRegistrationModal'] = closeModal;
+        }
 
             // Gallery Slider Functionality
             let currentSlide = 0;

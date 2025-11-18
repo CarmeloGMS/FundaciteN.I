@@ -151,6 +151,9 @@
         if (res.ok) {
           statusEl.textContent = 'Registro recibido. Nos pondremos en contacto.';
           formEl.reset();
+          if (typeof window !== 'undefined' && typeof window['closeRegistrationModal'] === 'function') {
+            window['closeRegistrationModal']();
+          }
         } else {
           const text = await res.text();
           statusEl.textContent = 'Error: ' + (text || res.statusText);
