@@ -15,8 +15,8 @@ import RegistrationForm from '../components/RegistrationForm.astro';
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 	<link rel="stylesheet" href="/src/styles/global.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
 	<style>
 		:root { --font-sans: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Noto Sans', 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji'; }
 		h1,h2,h3,h4 { font-family: 'Poppins', var(--font-sans); }
@@ -26,10 +26,116 @@ import RegistrationForm from '../components/RegistrationForm.astro';
 		.motion-card {
 			will-change: transform, opacity, filter;
 			transform-style: preserve-3d;
+			position: relative;
+			transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+		}
+		
+		.motion-card::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: radial-gradient(circle at 30% 30%, rgba(0, 209, 255, 0.2), transparent 70%);
+			opacity: 0;
+			transition: opacity 0.4s ease;
+			pointer-events: none;
+			border-radius: inherit;
 		}
 		
 		.motion-card:hover {
-			filter: brightness(1.1) drop-shadow(0 0 20px rgba(0, 209, 255, 0.3));
+			transform: translateY(-12px) scale(1.05) rotateX(5deg) rotateY(-5deg);
+			filter: brightness(1.2) drop-shadow(0 20px 40px rgba(0, 209, 255, 0.5));
+			box-shadow: 
+				0 0 30px rgba(0, 209, 255, 0.6),
+				0 0 60px rgba(100, 255, 218, 0.3),
+				inset 0 0 30px rgba(0, 209, 255, 0.1);
+		}
+		
+		.motion-card:hover::before {
+			opacity: 1;
+		}
+		
+		.motion-card:hover h3 {
+			color: #00D1FF;
+			text-shadow: 0 0 20px rgba(0, 209, 255, 0.8);
+		}
+		
+		.motion-card:hover .text-5xl {
+			transform: scale(1.2) rotateZ(10deg);
+			filter: drop-shadow(0 0 15px rgba(0, 209, 255, 0.8));
+		}
+		
+		/* Enhanced Visual Effects */
+		@keyframes pulseGlow {
+			0%, 100% {
+				box-shadow: 0 0 20px rgba(0, 209, 255, 0.3), inset 0 0 20px rgba(0, 209, 255, 0.05);
+			}
+			50% {
+				box-shadow: 0 0 40px rgba(0, 209, 255, 0.6), inset 0 0 30px rgba(0, 209, 255, 0.15);
+			}
+		}
+
+		@keyframes borderGlow {
+			0% {
+				border-color: rgba(0, 209, 255, 0.2);
+			}
+			50% {
+				border-color: rgba(0, 209, 255, 0.8);
+			}
+			100% {
+				border-color: rgba(0, 209, 255, 0.2);
+			}
+		}
+
+		@keyframes shimmerEffect {
+			0% {
+				background-position: -1000px 0;
+			}
+			100% {
+				background-position: 1000px 0;
+			}
+		}
+
+		@keyframes rotateBorder {
+			0% {
+				transform: rotateZ(0deg);
+			}
+			100% {
+				transform: rotateZ(360deg);
+			}
+		}
+
+		.motion-card {
+			background: linear-gradient(135deg, rgba(0, 209, 255, 0.05) 0%, rgba(100, 255, 218, 0.02) 100%);
+			animation: pulseGlow 3s ease-in-out infinite;
+			border: 2px solid rgba(0, 209, 255, 0.2);
+			animation: pulseGlow 3s ease-in-out infinite;
+		}
+
+		.motion-card:hover {
+			background: linear-gradient(135deg, rgba(0, 209, 255, 0.15) 0%, rgba(100, 255, 218, 0.08) 100%);
+			animation: cardGlow 1.5s ease-in-out infinite, borderGlow 2s ease-in-out infinite;
+		}
+
+		.motion-card::after {
+			content: '';
+			position: absolute;
+			top: -2px;
+			left: -2px;
+			right: -2px;
+			bottom: -2px;
+			background: linear-gradient(45deg, #00D1FF, #64FFDA, #00D1FF);
+			border-radius: inherit;
+			opacity: 0;
+			z-index: -1;
+			animation: rotateBorder 3s linear infinite;
+			transition: opacity 0.4s ease;
+		}
+
+		.motion-card:hover::after {
+			opacity: 0.3;
 		}
 		
 		/* Progress Bar Enhancement */
@@ -49,6 +155,125 @@ import RegistrationForm from '../components/RegistrationForm.astro';
 			100% {
 				text-shadow: 0 0 20px rgba(0, 209, 255, 0.4);
 			}
+		}
+
+		/* Diagonal Snap Scroll */
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			overflow-x: hidden;
+		}
+
+		section {
+			scroll-snap-align: start;
+			scroll-snap-stop: always;
+		}
+
+		@supports (scroll-snap-type: y mandatory) {
+			html {
+				scroll-snap-type: y mandatory;
+			}
+		}
+
+		/* Enhanced Card Hover Animations */
+		@keyframes cardGlow {
+			0% {
+				box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
+			}
+			50% {
+				box-shadow: 0 0 40px rgba(0, 209, 255, 0.6), 0 0 80px rgba(100, 255, 218, 0.3);
+			}
+			100% {
+				box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
+			}
+		}
+
+		@keyframes float {
+			0%, 100% {
+				transform: translateY(0px);
+			}
+			50% {
+				transform: translateY(-8px);
+			}
+		}
+
+		@keyframes shimmer {
+			0% {
+				background-position: -1000px 0;
+			}
+			100% {
+				background-position: 1000px 0;
+			}
+		}
+
+		@keyframes iconBounce {
+			0%, 100% {
+				transform: scale(1) translateY(0);
+			}
+			50% {
+				transform: scale(1.15) translateY(-10px);
+			}
+		}
+
+		@keyframes textGlitch {
+			0%, 100% {
+				text-shadow: 0 0 10px rgba(0, 209, 255, 0.5);
+			}
+			50% {
+				text-shadow: 0 0 20px rgba(0, 209, 255, 0.9), 0 0 30px rgba(100, 255, 218, 0.6);
+			}
+		}
+
+		.motion-card:hover {
+			animation: cardGlow 2s ease-in-out infinite;
+		}
+
+		/* Emoji Icon Animation */
+		.motion-card .text-5xl {
+			transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+		}
+
+		.motion-card:hover .text-5xl {
+			animation: iconBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+		}
+
+		/* Link Hover Enhancement */
+		.motion-card a {
+			position: relative;
+			transition: all 0.3s ease;
+			color: #00D1FF;
+		}
+
+		.motion-card a::after {
+			content: '';
+			position: absolute;
+			bottom: -2px;
+			left: 0;
+			width: 0;
+			height: 2px;
+			background: linear-gradient(90deg, #00D1FF, #64FFDA);
+			transition: width 0.3s ease;
+		}
+
+		.motion-card:hover a {
+			color: #64FFDA;
+			text-shadow: 0 0 10px rgba(0, 209, 255, 0.6);
+		}
+
+		.motion-card:hover a::after {
+			width: 100%;
+		}
+
+		/* Paragraph text enhancement */
+		.motion-card p {
+			transition: all 0.3s ease;
+		}
+
+		.motion-card:hover p {
+			color: #B0E0E6;
+			text-shadow: 0 0 8px rgba(0, 209, 255, 0.3);
 		}
 	</style>
 </head>
@@ -82,85 +307,301 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
   document.documentElement.classList.add('dark');
 }
 </script>
-<script type="module">
-import { animate, inView, stagger, scroll } from 'motion';
+<script>
+// Parallax effect
 const px = () => {
-const els = document.querySelectorAll('[data-parallax]');
-const y = window.scrollY || document.documentElement.scrollTop;
-els.forEach((el) => {
-const speed = parseFloat(el.getAttribute('data-speed') || '0.2');
-el.style.transform = `translate3d(0, ${y * speed}px, 0)`;
-});
+  const els = document.querySelectorAll('[data-parallax]');
+  const y = window.scrollY || document.documentElement.scrollTop;
+  els.forEach((el) => {
+    const speed = parseFloat(el.getAttribute('data-speed') || '0.2');
+    el.style.transform = `translate3d(0, ${y * speed}px, 0)`;
+  });
 };
 window.addEventListener('scroll', px, { passive: true });
 px();
-inView('.motion-card', ({ target }) => {
-animate(target, { 
-  opacity: [0, 1], 
-  y: [30, 0],
-  scale: [0.9, 1],
-  filter: ['blur(10px)', 'blur(0px)']
-}, { 
-  duration: 0.7, 
-  easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' 
-});
-});
-inView('[data-stagger]', ({ target }) => {
-const items = target.querySelectorAll('.motion-card');
-animate(items, { 
-  opacity: [0, 1], 
-  y: [40, 0],
-  scale: [0.85, 1],
-  filter: ['blur(15px)', 'blur(0px)']
-}, { 
-  duration: 0.6, 
-  delay: stagger(0.1), 
-  easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' 
-});
-});
-inView('.motion-section', ({ target }) => {
-animate(target, { opacity: [0, 1], y: [16, 0] }, { duration: 0.6, easing: 'ease-out' });
-});
 
-// Spectacular entrance animation for section headings with Animate CSS
-// Only animate when element enters viewport
-const headings = document.querySelectorAll('[data-scroll-heading]');
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px'
-};
+// Progress bar
+const progressBar = document.querySelector('.progress-bar');
+if (progressBar) {
+  window.addEventListener('scroll', () => {
+    const scrollDistance = window.scrollY;
+    const maxScrollDistance = document.body.offsetHeight - window.innerHeight;
+    const progress = (scrollDistance / maxScrollDistance) * 100;
+    progressBar.style.width = `${progress}%`;
+  });
+}
+</script>
 
-const headingObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-      entry.target.classList.add('animate__animated', 'animate__bounceInDown', 'animated');
-      entry.target.style.textShadow = '0 0 20px rgba(0, 209, 255, 0.6)';
-      entry.target.style.animation = 'glowPulse 1.4s ease-in-out';
-      // Stop observing after animation triggers
-      headingObserver.unobserve(entry.target);
+<script>
+// Wait for anime to be loaded from CDN with retry
+function initializeAnimations() {
+  // @ts-ignore - anime is loaded from CDN
+  const anime = window.anime;
+  
+  if (!anime) {
+    console.warn('Anime.js not yet loaded, retrying...');
+    setTimeout(initializeAnimations, 100);
+    return;
+  }
+  
+  console.log('Anime.js loaded successfully');
+
+  // Diagonal Snap Scroll Effect
+const snapSections = document.querySelectorAll('section');
+let isSnapping = false;
+let snapTimeout;
+
+window.addEventListener('scroll', () => {
+  if (isSnapping) return;
+
+  let closestSection = null;
+  let closestDistance = Infinity;
+
+  snapSections.forEach((section) => {
+    const rect = section.getBoundingClientRect();
+    const distance = Math.abs(rect.top);
+
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closestSection = section;
     }
   });
-}, observerOptions);
 
-headings.forEach(heading => headingObserver.observe(heading));
+  if (closestSection && closestDistance > 50) {
+    isSnapping = true;
+    const targetPosition = closestSection.offsetTop;
 
-// Section heading scroll animations
-document.querySelectorAll('[data-scroll-animate]').forEach((section) => {
-  const heading = section.querySelector('[data-scroll-heading]');
-  if (heading) {
-    scroll(animate(heading, { y: [-400, 400] }, { ease: 'linear' }), {
-      target: heading,
-    });
+    // Diagonal animation with offset
+    const startY = window.scrollY;
+    const startX = 0;
+    const endY = targetPosition;
+    const endX = window.innerWidth * 0.05; // Diagonal offset
+    const duration = 800;
+    const startTime = performance.now();
+
+    const animateScroll = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function for smooth diagonal motion
+      const easeProgress = progress < 0.5 
+        ? 2 * progress * progress 
+        : -1 + (4 - 2 * progress) * progress;
+
+      window.scrollTo({
+        top: startY + (endY - startY) * easeProgress,
+        left: 0,
+        behavior: 'auto'
+      });
+
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      } else {
+        isSnapping = false;
+      }
+    };
+
+    requestAnimationFrame(animateScroll);
+
+    clearTimeout(snapTimeout);
+    snapTimeout = setTimeout(() => {
+      isSnapping = false;
+    }, duration + 100);
   }
+}, { passive: true });
+
+// Anime.js Hover Effect for Cards
+const cards = document.querySelectorAll('.motion-card');
+cards.forEach((card) => {
+  card.addEventListener('mouseenter', () => {
+    anime({
+      targets: card,
+      scale: 1.08,
+      rotateX: 8,
+      rotateY: -8,
+      translateY: -15,
+      duration: 400,
+      easing: 'cubicBezier(0.34, 1.56, 0.64, 1)'
+    });
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    anime({
+      targets: card,
+      scale: 1,
+      rotateX: 0,
+      rotateY: 0,
+      translateY: 0,
+      duration: 400,
+      easing: 'cubicBezier(0.34, 1.56, 0.64, 1)'
+    });
+  });
 });
 
-const progressBar = document.querySelector('.progress-bar');
-window.addEventListener('scroll', () => {
-const scrollDistance = window.scrollY;
-const maxScrollDistance = document.body.offsetHeight - window.innerHeight;
-const progress = (scrollDistance / maxScrollDistance) * 100;
-progressBar.style.width = `${progress}%`;
-});
+// Intersection Observer for Section Entry Animations
+const sectionObserverOptions = {
+  threshold: 0.15,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const sectionEntryObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const section = entry.target;
+      
+      // Don't animate the hero section
+      if (section.id === 'inicio') return;
+      
+      if (!section.classList.contains('section-animated')) {
+        section.classList.add('section-animated');
+        
+        // Animate section content with specific selectors
+        const cards = section.querySelectorAll('.motion-card');
+        const headings = section.querySelectorAll('[data-scroll-heading]');
+        const descriptions = section.querySelectorAll('.section-description');
+        const splineContainer = section.querySelector('.spline-container');
+        
+        // Animate cards with Anime.js
+        cards.forEach((card, index) => {
+          anime({
+            targets: card,
+            opacity: [0, 1],
+            translateY: [80, 0],
+            scale: [0.85, 1],
+            rotateX: [-20, 0],
+            duration: 1000,
+            delay: index * 150,
+            easing: 'cubicBezier(0.34, 1.56, 0.64, 1)'
+          });
+        });
+        
+        // Animate headings
+        headings.forEach((heading, index) => {
+          anime({
+            targets: heading,
+            opacity: [0, 1],
+            translateY: [-40, 0],
+            scale: [0.8, 1],
+            duration: 900,
+            delay: index * 100,
+            easing: 'cubicBezier(0.34, 1.56, 0.64, 1)'
+          });
+        });
+        
+        // Animate descriptions
+        descriptions.forEach((desc, index) => {
+          anime({
+            targets: desc,
+            opacity: [0, 1],
+            translateY: [20, 0],
+            duration: 700,
+            delay: 150 + (index * 100),
+            easing: 'cubicBezier(0.34, 1.56, 0.64, 1)'
+          });
+        });
+        
+        // Animate spline container
+        if (splineContainer) {
+          anime({
+            targets: splineContainer,
+            opacity: [0, 1],
+            scale: [0.9, 1],
+            duration: 800,
+            delay: 300,
+            easing: 'cubicBezier(0.34, 1.56, 0.64, 1)'
+          });
+        }
+      }
+    }
+  });
+}, sectionObserverOptions);
+
+// Animate Hero section with Anime.js
+const heroObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting && !entry.target.classList.contains('hero-animated')) {
+      entry.target.classList.add('hero-animated');
+      
+      if (entry.target.classList.contains('hero-title')) {
+        anime({
+          targets: entry.target,
+          opacity: [0, 1],
+          translateY: [-50, 0],
+          scale: [0.9, 1],
+          duration: 1000,
+          easing: 'cubicBezier(0.34, 1.56, 0.64, 1)'
+        });
+      }
+      
+      if (entry.target.classList.contains('hero-text')) {
+        anime({
+          targets: entry.target,
+          opacity: [0, 1],
+          translateY: [30, 0],
+          duration: 900,
+          delay: 200,
+          easing: 'cubicBezier(0.34, 1.56, 0.64, 1)'
+        });
+      }
+      
+      heroObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+// Observe hero elements
+const heroTitle = document.querySelector('.hero-title');
+const heroText = document.querySelector('.hero-text');
+if (heroTitle) {
+  heroTitle.style.opacity = '0';
+  heroObserver.observe(heroTitle);
+}
+if (heroText) {
+  heroText.style.opacity = '0';
+  heroObserver.observe(heroText);
+}
+
+  // Observe all sections for scroll animations
+  const allSections = document.querySelectorAll('section');
+  allSections.forEach((section) => {
+    // Skip hero section from section observer
+    if (section.id === 'inicio') return;
+    
+    sectionEntryObserver.observe(section);
+    
+    // Set initial state for elements
+    const cards = section.querySelectorAll('.motion-card');
+    const headings = section.querySelectorAll('[data-scroll-heading]');
+    const descriptions = section.querySelectorAll('.section-description');
+    const splineContainer = section.querySelector('.spline-container');
+    
+    cards.forEach((card) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(80px)';
+    });
+    
+    headings.forEach((heading) => {
+      heading.style.opacity = '0';
+      heading.style.transform = 'translateY(-40px)';
+    });
+    
+    descriptions.forEach((desc) => {
+      desc.style.opacity = '0';
+      desc.style.transform = 'translateY(20px)';
+    });
+    
+    if (splineContainer) {
+      splineContainer.style.opacity = '0';
+    }
+  });
+}
+
+// Initialize animations when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeAnimations);
+} else {
+  initializeAnimations();
+}
 </script>
 </body>
 </html>
